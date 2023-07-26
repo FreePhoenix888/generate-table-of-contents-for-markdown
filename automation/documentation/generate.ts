@@ -5,11 +5,11 @@ import { glob } from 'glob';
 generate()
 
 async function generate() {
-  const { stdout: username } = await execa('git', ['config', '--global', 'user.name']);
+  const { stdout: username } = await execa('git', ['config', '--global', 'user.name'], {reject: false, stdio: 'inherit', verbose: true});
   if (!username) {
     await execa('git', ['config', '--global', 'user.name', 'FreePhoenix888'], {stdio: 'inherit', verbose: true});
   }
-  const { stdout: email } = await execa('git', ['config', '--global', 'user.email']);
+  const { stdout: email } = await execa('git', ['config', '--global', 'user.email'], {reject: false, stdio: 'inherit', verbose: true});
   if (!email) {
     await execa('git', ['config', '--global', 'user.email', 'freephoenix888@gmail.com'], {stdio: 'inherit', verbose: true});
   }
