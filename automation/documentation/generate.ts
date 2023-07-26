@@ -58,7 +58,7 @@ async function generate() {
     if (!ghPagesBranchExists) {
       console.log("gh-pages branch doesn't exist. Creating...");
       await execa('git', ['checkout', '--orphan', 'gh-pages'], {stdio: 'inherit', verbose: true});
-      await execa('git', ['rm', '--recursive', '--force', '.'], {stdio: 'inherit', verbose: true});
+      await execa('git', ['rm', '--force', '.'], {stdio: 'inherit', verbose: true});
     } else {
       console.log("gh-pages branch exists. Checking out...");
       await execa('git', ['checkout', 'gh-pages'], {stdio: 'inherit', verbose: true});
