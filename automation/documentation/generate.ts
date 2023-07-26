@@ -46,28 +46,30 @@ async function generate() {
     await execa('git', ['push', 'origin', 'main'], {stdio: 'inherit', verbose: true});
   }
 
+  // Generate the docs first
   await execa('npx', ['typedoc', './src/main.ts'], {stdio: 'inherit', verbose: true});
-  await execa(`git`, ['add', './docs'], {stdio: 'inherit', verbose: true});
-  const execResultAfterAddingDocsFolder = await execa('git', ['diff', '--staged', '--quiet'], { reject: false , stdio: 'inherit', verbose: true});
-  if (execResultAfterAddingDocsFolder.exitCode === 0) {
-    console.log("No changes to commit");
-  }
-  else {
-    const { stdout: ghPagesBranchExists } = await execa('git', ['branch', '-r', '--list', 'origin/gh-pages'], {reject: false, stdio: 'inherit', verbose: true});
 
-    if (!ghPagesBranchExists) {
-      console.log("gh-pages branch doesn't exist. Creating...");
-      await execa('git', ['checkout', '--orphan', 'gh-pages'], {stdio: 'inherit', verbose: true});
-      await execa('git', ['rm', '-r', '--force', '.'], {stdio: 'inherit', verbose: true});
-    } else {
-      console.log("gh-pages branch exists. Checking out...");
-      await execa('git', ['checkout', 'gh-pages'], {stdio: 'inherit', verbose: true});
-    }
+  // Check if the gh-pages branch exists
+  const { stdout: ghPagesBranchExists } = await execa('git', ['branch', '-r', '--list', 'origin/gh-pages'], {reject: false, stdio: 'inherit', verbose: true});
+
+  if (!ghPagesBranchExists) {
+    // If it doesn't exist, create it as an orphan branch
+    await execa('git', ['checkout', '--orphan', 'gh-pages'], {stdio: 'inherit', verbose: true});
+  } else {
+    // If it does exist, just checkout to it
+    await execa('git', ['checkout', 'gh-pages'], {stdio: 'inherit', verbose: true});
+  }
+
+  // Add the newly generated docs to the branch
+  await execa('git', ['checkout', 'main', '--', 'docs'], {stdio: 'inherit', verbose: true});
+  await execa('git', ['add', 'docs'], {stdio: 'inherit', verbose: true});
+
+  // Commit and push the changes
+  await execa('git', ['commit', '-m', 'Update documentation'], {stdio: 'inherit', verbose: true});
+  await execa('git', ['push', 'origin', 'gh-pages'], {stdio: 'inherit', verbose: true});
+
+  // Switch back to the main branch
+  await execa('git', ['checkout', 'main'], {stdio: 'inherit', verbose: true});
   
-    await execa('git', ['add', 'docs'], {stdio: 'inherit', verbose: true});
-    await execa('git', ['commit', '--message', 'Generate documentation'], {stdio: 'inherit', verbose: true});
-    await execa('git', ['push', 'origin', 'gh-pages'], {stdio: 'inherit', verbose: true});
-    await execa('git', ['checkout', 'main'], {stdio: 'inherit', verbose: true});
-  }  
 
 };
