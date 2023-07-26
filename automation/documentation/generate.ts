@@ -53,8 +53,21 @@ async function generate() {
     console.log("No changes to commit");
   }
   else {
-    await execa('git', ['commit', '-m', 'Generate documentation'], {stdio: 'inherit', verbose: true});
+    const { stdout: ghPagesBranchExists } = await execa('git', ['branch', '-r', '--list', 'origin/gh-pages'], {reject: false, stdio: 'inherit', verbose: true});
+
+    if (!ghPagesBranchExists) {
+      console.log("gh-pages branch doesn't exist. Creating...");
+      await execa('git', ['checkout', '--orphan', 'gh-pages'], {stdio: 'inherit', verbose: true});
+      await execa('git', ['rm', '--recursive', '--force', '.'], {stdio: 'inherit', verbose: true});
+    } else {
+      console.log("gh-pages branch exists. Checking out...");
+      await execa('git', ['checkout', 'gh-pages'], {stdio: 'inherit', verbose: true});
+    }
+  
+    await execa('git', ['add', 'docs'], {stdio: 'inherit', verbose: true});
+    await execa('git', ['commit', '--message', 'Generate documentation'], {stdio: 'inherit', verbose: true});
     await execa('git', ['push', 'origin', 'gh-pages'], {stdio: 'inherit', verbose: true});
-  }
+    await execa('git', ['checkout', 'main'], {stdio: 'inherit', verbose: true});
+  }  
 
 };
