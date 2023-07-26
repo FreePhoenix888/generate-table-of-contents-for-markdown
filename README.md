@@ -6,6 +6,7 @@ Generates table of contents for markdown
 # Table Of Contents
 <!-- Do not remove these comments because they are used for automatic generation -->
 <!-- ACTUAL_TABLE_OF_CONTENTS_START -->
+undefined
 <!-- ACTUAL_TABLE_OF_CONTENTS_END -->
 
 # Quick Start
@@ -61,20 +62,17 @@ See [Documentation] for examples and API
 ```
 generate-table-of-contents-for-markdown [Options]
 
-Generates usage ways of CLI applications of npm package in markdown format
+Generates a table of contents for a markdown file
 
 Options:
-  --version            Show version number                             [boolean]
-  --package-name       Name of the package
-                [string] [default: Name of the package in the current directory]
-  --cli-utility-names  Names of the CLI utilities
-  [array] [default: Keys of the bin property of package.json in the current dire
-                                                                          ctory]
-  --root-header-level  Header level of the root header. Example: If you want gen
-                       erated headers to have 4 hashes, then specify 3 here
-                                                           [number] [default: 3]
-  --help               Show help                                       [boolean]
+  --version             Show version number                            [boolean]
+  --markdown-file-path  Path of the markdown file            [string] [required]
+  --root-header-level   Header level of the root header. Example: If you want ge
+                        nerated headers to have 2 hashes, then specify 2 here
+                                                           [number] [default: 1]
+  --help                Show help                                      [boolean]
 ```
+
 <!-- CLI_HELP_END -->
 
 ## Cli Usage Ways
