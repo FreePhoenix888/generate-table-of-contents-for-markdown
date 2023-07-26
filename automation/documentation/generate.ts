@@ -49,6 +49,10 @@ async function generate() {
   // Generate the docs first
   await execa('npx', ['typedoc', './src/main.ts'], {stdio: 'inherit', verbose: true});
 
+  // Stage and commit the docs in the main branch
+  await execa('git', ['add', 'docs'], {stdio: 'inherit', verbose: true});
+  await execa('git', ['commit', '-m', 'Update documentation'], {stdio: 'inherit', verbose: true});
+
   // Check if the gh-pages branch exists
   const { stdout: ghPagesBranchExists } = await execa('git', ['branch', '-r', '--list', 'origin/gh-pages'], {reject: false, stdio: 'inherit', verbose: true});
 
@@ -60,9 +64,8 @@ async function generate() {
     await execa('git', ['checkout', 'gh-pages'], {stdio: 'inherit', verbose: true});
   }
 
-  // Add the newly generated docs to the branch
+  // Checkout the docs from the main branch to the gh-pages branch
   await execa('git', ['checkout', 'main', '--', 'docs'], {stdio: 'inherit', verbose: true});
-  await execa('git', ['add', 'docs'], {stdio: 'inherit', verbose: true});
 
   // Commit and push the changes
   await execa('git', ['commit', '-m', 'Update documentation'], {stdio: 'inherit', verbose: true});
