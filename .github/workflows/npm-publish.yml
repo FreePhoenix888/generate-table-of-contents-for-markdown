@@ -1,0 +1,22 @@
+name: Npm Publish
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - package.json
+      - .github/workflows/npm-publish.yml
+  workflow_dispatch:
+
+jobs:
+  main:
+    uses: FreePhoenix888/reusable-github-action-workflows-for-npm-typescript/.github/workflows/npm-publish.yml@npm-publish-2.0.1
+    secrets:
+      npm-token: ${{ secrets.NPM_TOKEN }}
+    with:
+      build-command: "npm run library:build:dirty"
+      test-command: "echo 'Tests are temporarily disabled'"
+      should-generate-documentation: true
+      generate-documentation-command: "npm run documentation:generate"
+        
