@@ -42,7 +42,7 @@ async function generate() {
     console.log("No changes to commit");
   }
   else {
-    await execa('git', ['commit', '-m', 'Generate documentation'], {stdio: 'inherit', verbose: true});
+    await execa('git', ['commit', '-m', 'Update README.md'], {stdio: 'inherit', verbose: true});
     await execa('git', ['push', 'origin', 'main'], {stdio: 'inherit', verbose: true});
   }
 
