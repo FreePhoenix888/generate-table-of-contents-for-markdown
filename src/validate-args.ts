@@ -2,6 +2,9 @@ import { OutputOptions } from './generate-table-of-contents-for-markdown';
 
 export function validateArgs(argv: Record<string, any>) {
   const output = argv.output as OutputOptions;
+  if(!output) {
+    return true;
+  }
   if (
     output.writeMode === 'replace-placeholder' &&
     (!('placeholderStart' in output) || !('placeholderEnd' in output))
