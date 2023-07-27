@@ -56,6 +56,7 @@ async function generate() {
   await execa('git', ['fetch', 'origin'], {stdio: 'inherit', verbose: true});
   // Check if the gh-pages branch exists
   const { stdout: ghPagesBranchExists } = await execa('git', ['branch', '-r', '--list', 'origin/gh-pages'], {reject: false, stdio: 'inherit', verbose: true});
+  console.log({ghPagesBranchExists})
 
   if (!ghPagesBranchExists) {
     // If it doesn't exist, create it as an orphan branch
