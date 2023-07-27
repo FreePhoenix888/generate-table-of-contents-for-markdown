@@ -60,17 +60,19 @@ See [Documentation] for examples and API
 
 ### `generate-table-of-contents-for-markdown`
 ```
-generate-table-of-contents-for-markdown [Options]
-
-Generates a table of contents for a markdown file
-
 Options:
-  --version             Show version number                            [boolean]
-  --markdown-file-path  Path of the markdown file            [string] [required]
-  --root-header-level   Header level of the root header. Example: If you want ge
-                        nerated headers to have 2 hashes, then specify 2 here
+  --help                      Show help                                [boolean]
+  --version                   Show version number                      [boolean]
+  --markdown-file-path        Path of the markdown file      [string] [required]
+  --root-header-level         Header level of the root header
                                                            [number] [default: 1]
-  --help                Show help                                      [boolean]
+  --output.file-path          Path of the output file                   [string]
+  --output.write-mode         Write mode for the output
+                         [choices: "overwrite", "append", "replace-placeholder"]
+  --output.placeholder-start  Start of the placeholder text (only needed for
+                              replace-placeholder mode)                 [string]
+  --output.placeholder-end    End of the placeholder text (only needed for
+                              replace-placeholder mode)                 [string]
 ```
 
 <!-- CLI_HELP_END -->
