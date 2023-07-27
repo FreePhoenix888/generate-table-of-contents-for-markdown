@@ -1,3 +1,4 @@
+#!/usr/bin/env node
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
 import { generateTableOfContentsForMarkdown, GenerateTableOfContentsForMarkdownOptions, OutputOptions } from '../generate-table-of-contents-for-markdown'; // Import function and types from your actual module
