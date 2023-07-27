@@ -53,6 +53,7 @@ async function generate() {
   await execa('git', ['add', 'docs'], {stdio: 'inherit', verbose: true});
   await execa('git', ['commit', '-m', 'Update documentation'], {stdio: 'inherit', verbose: true});
 
+  await execa('git', ['fetch', 'origin'], {stdio: 'inherit', verbose: true});
   // Check if the gh-pages branch exists
   const { stdout: ghPagesBranchExists } = await execa('git', ['branch', '-r', '--list', 'origin/gh-pages'], {reject: false, stdio: 'inherit', verbose: true});
 
