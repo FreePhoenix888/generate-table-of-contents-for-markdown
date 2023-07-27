@@ -18,12 +18,12 @@ const argv = yargs(hideBin(process.argv))
   .option('output.file-path', {
     describe: 'Path of the output file',
     type: 'string',
-    demandOption: true,
+    demandOption: false,
   })
   .option('output.write-mode', {
     describe: 'Write mode for the output',
     choices: ['overwrite', 'append', 'replace-placeholder'],
-    demandOption: true,
+    demandOption: false,
   })
   .option('output.placeholder-start', {
     describe: 'Start of the placeholder text (only needed for replace-placeholder mode)',
