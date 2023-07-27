@@ -1,7 +1,7 @@
 #!/usr/bin/env node
 import yargs from 'yargs/yargs';
 import { hideBin } from 'yargs/helpers';
-import { generateTableOfContentsForMarkdown, GenerateTableOfContentsForMarkdownOptions, OutputOptions } from '../generate-table-of-contents-for-markdown'; // Import function and types from your actual module
+import { generateTableOfContentsForMarkdown, GenerateTableOfContentsForMarkdownOptions, OutputOptions } from '../generate-table-of-contents-for-markdown.js'; // Import function and types from your actual module
 import { validateArgs } from '../validate-args.js';
 
 const argv = yargs(hideBin(process.argv))
