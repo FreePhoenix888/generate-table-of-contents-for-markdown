@@ -14,6 +14,7 @@ const argv = yargs(hideBin(process.argv))
     describe: 'Header level of the root header',
     type: 'number',
     default: 1,
+    demandOption: false,
   })
   .option('output.file-path', {
     describe: 'Path of the output file',
@@ -28,10 +29,12 @@ const argv = yargs(hideBin(process.argv))
   .option('output.placeholder-start', {
     describe: 'Start of the placeholder text (only needed for replace-placeholder mode)',
     type: 'string',
+    demandOption: false,
   })
   .option('output.placeholder-end', {
     describe: 'End of the placeholder text (only needed for replace-placeholder mode)',
     type: 'string',
+    demandOption: false,
   })
   .check(validateArgs)
   .parseSync();
