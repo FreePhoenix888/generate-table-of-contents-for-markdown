@@ -8,6 +8,7 @@ Generates table of contents for markdown
 <!-- ACTUAL_TABLE_OF_CONTENTS_START -->
 ## Table of Contents
 - [Table Of Contents](#table-of-contents)
+  - [Table of Contents](#table-of-contents)
 - [Quick Start](#quick-start)
   - [Pre-requisites](#pre-requisites)
 - [Cli](#cli)
