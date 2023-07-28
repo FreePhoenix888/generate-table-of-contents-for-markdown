@@ -1,6 +1,7 @@
 import { execa } from 'execa';
 import fsExtra from 'fs-extra';
 import { glob } from 'glob';
+import {generateTableOfContentsForMarkdown} from '../../src/generate-table-of-contents-for-markdown'
 
 generate()
 
@@ -31,7 +32,10 @@ async function generate() {
   const cliUsageWays = await execa('npx', ['@freephoenix888/generate-usage-ways-of-npm-cli-apps-in-markdown-format', '--root-header-level', '2']);
   readmeContents = readmeContents.replace(/(?<start><!-- CLI_USAGE_WAYS_START -->)[\S\s]*(?<end><!-- CLI_USAGE_WAYS_END -->)/g, `$<start>\n${cliUsageWays.stdout}\n$<end>`);
 
-  const { stdout: tableOfContents } = await execa('node', [`./dist/cli/generate-table-of-contents-for-markdown.js`,`--markdown-file-path`, readmeFilePath], { verbose: true});
+  const tableOfContents = await generateTableOfContentsForMarkdown({
+    markdownFilePath: readmeFilePath,
+    rootHeaderLevel: 2,
+  })
   readmeContents = readmeContents.replace(/(?<start><!-- ACTUAL_TABLE_OF_CONTENTS_START -->)[\S\s]*(?<end><!-- ACTUAL_TABLE_OF_CONTENTS_END -->)/g, `$<start>\n${tableOfContents}\n$<end>`);
 
   await fsExtra.writeFile(readmeFilePath, readmeContents);
