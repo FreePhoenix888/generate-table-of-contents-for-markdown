@@ -97,9 +97,6 @@ export async function generateTableOfContentsForMarkdown(options: GenerateTableO
       fsExtra.writeFileSync(options.output.filePath, tableOfContents)
     }
   }
-  fsExtra.writeFileSync(options.output.filePath, tableOfContents, {
-
-  })
 
   return tableOfContents;
 }
