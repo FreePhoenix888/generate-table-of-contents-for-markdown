@@ -6,7 +6,7 @@ Generates table of contents for markdown
 # Table Of Contents
 <!-- Do not remove these comments because they are used for automatic generation -->
 <!-- ACTUAL_TABLE_OF_CONTENTS_START -->
-undefined
+
 <!-- ACTUAL_TABLE_OF_CONTENTS_END -->
 
 # Quick Start
