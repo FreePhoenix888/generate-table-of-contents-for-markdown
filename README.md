@@ -6,6 +6,27 @@ Generates table of contents for markdown
 # Table Of Contents
 <!-- Do not remove these comments because they are used for automatic generation -->
 <!-- ACTUAL_TABLE_OF_CONTENTS_START -->
+## Table of Contents
+- [Table Of Contents](#table-of-contents)
+- [Quick Start](#quick-start)
+  - [Pre-requisites](#pre-requisites)
+- [Cli](#cli)
+  - [Cli Usage Ways](#cli-usage-ways)
+  - [JavaScript](#javascript)
+  - [Bash](#bash)
+- [What can it be used for?](#what-can-it-be-used-for?)
+- [Library](#library)
+- [Cli](#cli)
+  - [Cli Usage](#cli-usage)
+    - [`generate-table-of-contents-for-markdown`](#`generate-table-of-contents-for-markdown`)
+  - [Cli Usage Ways](#cli-usage-ways)
+      - [Directly running using npx](#directly-running-using-npx)
+      - [Global Installation](#global-installation)
+        - [Global installation and running using binary name](#global-installation-and-running-using-binary-name)
+        - [Global installation and running using npx](#global-installation-and-running-using-npx)
+      - [Local installation](#local-installation)
+        - [Local installation and running using npx](#local-installation-and-running-using-npx)
+        - [Local installation and running using npm script](#local-installation-and-running-using-npm-script)
 
 <!-- ACTUAL_TABLE_OF_CONTENTS_END -->
 
