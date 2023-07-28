@@ -23,15 +23,7 @@ async function generate() {
 
   const readmeFilePath = 'README.md';
   let readmeContents = await fsExtra.readFile(readmeFilePath, 'utf8');
-
-  const cliFilePaths = await glob('./dist/cli/*.js');
-  
-  const cliHelp = await execa('npx', ['@freephoenix888/generate-help-of-cli-apps-in-markdown-format', '--cli-app-file-paths', ...cliFilePaths, '--root-header-level', '2']);
-  readmeContents = readmeContents.replace(/(?<start><!-- CLI_HELP_START -->)[\S\s]*(?<end><!-- CLI_HELP_END -->)/g, `$<start>\n${cliHelp.stdout}\n$<end>`);
-
-  const cliUsageWays = await execa('npx', ['@freephoenix888/generate-usage-ways-of-npm-cli-apps-in-markdown-format', '--root-header-level', '2']);
-  readmeContents = readmeContents.replace(/(?<start><!-- CLI_USAGE_WAYS_START -->)[\S\s]*(?<end><!-- CLI_USAGE_WAYS_END -->)/g, `$<start>\n${cliUsageWays.stdout}\n$<end>`);
-
+ 
   const tableOfContents = await generateTableOfContentsForMarkdown({
     markdownFilePath: readmeFilePath,
     rootHeaderLevel: 2,
