@@ -1,7 +1,7 @@
 import { execa } from 'execa';
 import fsExtra from 'fs-extra';
 import { glob } from 'glob';
-import {generateTableOfContentsForMarkdown} from '../../src/generate-table-of-contents-for-markdown'
+import {generateTableOfContentsForMarkdown} from '../../src/generate-table-of-contents-for-markdown.js'
 
 generate()
 
