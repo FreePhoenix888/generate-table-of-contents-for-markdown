@@ -51,7 +51,7 @@ export interface GenerateTableOfContentsForMarkdownOptions {
   /**
    * Output options
    */
-  output: OutputOptions;
+  output?: OutputOptions;
 }
 
 /**
@@ -80,21 +80,23 @@ export async function generateTableOfContentsForMarkdown(options: GenerateTableO
     tableOfContents += `${'  '.repeat(level)}- [${title}](#${link})\n`;
   });
 
-  if(options.output.writeMode === 'replace-placeholder') {
-    const placeholderStart = options.output.placeholder.start;
-    const placeholderEnd = options.output.placeholder.end;
-    const placeholderRegex = new RegExp(`${placeholderStart}[\S\s]*${placeholderEnd}`, 'g');
-    const filePath = options.output.filePath;
-    tableOfContents = tableOfContents.replace(placeholderRegex, `${placeholderStart}\n${tableOfContents}\n${placeholderEnd}`);
-    const fileContents = fsExtra.readFileSync(filePath, 'utf-8');
-    const newFileContents = fileContents.replace(placeholderRegex, `${placeholderStart}\n${tableOfContents}\n${placeholderEnd}`);
-    fsExtra.writeFileSync(filePath, newFileContents)
-  } else  {
-    const fileContents = fsExtra.readFileSync(options.output.filePath, 'utf-8');
-    if(options.output.writeMode === 'append') {
-      fsExtra.appendFileSync(options.output.filePath, `${fileContents}\n${tableOfContents}`)
-    } else if(options.output.writeMode === 'overwrite') {
-      fsExtra.writeFileSync(options.output.filePath, tableOfContents)
+  if(options.output) {
+    if(options.output.writeMode === 'replace-placeholder') {
+      const placeholderStart = options.output.placeholder.start;
+      const placeholderEnd = options.output.placeholder.end;
+      const placeholderRegex = new RegExp(`${placeholderStart}[\S\s]*${placeholderEnd}`, 'g');
+      const filePath = options.output.filePath;
+      tableOfContents = tableOfContents.replace(placeholderRegex, `${placeholderStart}\n${tableOfContents}\n${placeholderEnd}`);
+      const fileContents = fsExtra.readFileSync(filePath, 'utf-8');
+      const newFileContents = fileContents.replace(placeholderRegex, `${placeholderStart}\n${tableOfContents}\n${placeholderEnd}`);
+      fsExtra.writeFileSync(filePath, newFileContents)
+    } else  {
+      const fileContents = fsExtra.readFileSync(options.output.filePath, 'utf-8');
+      if(options.output.writeMode === 'append') {
+        fsExtra.appendFileSync(options.output.filePath, `${fileContents}\n${tableOfContents}`)
+      } else if(options.output.writeMode === 'overwrite') {
+        fsExtra.writeFileSync(options.output.filePath, tableOfContents)
+      }
     }
   }
 
