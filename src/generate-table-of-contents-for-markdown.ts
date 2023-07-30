@@ -93,7 +93,7 @@ export async function generateTableOfContentsForMarkdown(options: GenerateTableO
       log({placeholderStart})
       const placeholderEnd = options.output.placeholder.end;
       log({placeholderEnd})
-      const placeholderRegex = new RegExp(`${placeholderStart}[\S\s]*${placeholderEnd}`, 'g');
+      const placeholderRegex = new RegExp(`${placeholderStart}[\\S\\s]*${placeholderEnd}`, 'g');
       log({placeholderRegex})
       const filePath = options.output.filePath;
       log({filePath})
