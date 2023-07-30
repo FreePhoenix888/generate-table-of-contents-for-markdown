@@ -57,7 +57,7 @@
   },
   "devDependencies": {
     "@atao60/fse-cli": "^0.1.7",
-    "@deep-foundation/npm-automation": "^17.1.2",
+    "@deep-foundation/npm-automation": "^17.1.3",
     "@freephoenix888/generate-help-of-cli-apps-in-markdown-format": "^1.0.9",
     "@freephoenix888/generate-usage-ways-of-npm-cli-apps-in-markdown-format": "^4.0.0",
     "@types/debug": "^4.1.8",
