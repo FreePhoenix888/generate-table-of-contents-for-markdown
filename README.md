@@ -78,23 +78,6 @@ See [Documentation] for examples and API
 ## Cli Usage
 <!-- CLI_HELP_START -->
 
-### `generate-table-of-contents-for-markdown`
-```
-Options:
-  --help                      Show help                                [boolean]
-  --version                   Show version number                      [boolean]
-  --markdown-file-path        Path of the markdown file      [string] [required]
-  --root-header-level         Header level of the root header
-                                                           [number] [default: 1]
-  --output.file-path          Path of the output file                   [string]
-  --output.write-mode         Write mode for the output
-                         [choices: "overwrite", "append", "replace-placeholder"]
-  --output.placeholder-start  Start of the placeholder text (only needed for
-                              replace-placeholder mode)                 [string]
-  --output.placeholder-end    End of the placeholder text (only needed for
-                              replace-placeholder mode)                 [string]
-```
-
 <!-- CLI_HELP_END -->
 
 ## Cli Usage Ways
