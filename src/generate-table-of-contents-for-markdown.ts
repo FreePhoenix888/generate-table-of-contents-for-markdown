@@ -93,9 +93,7 @@ export async function generateTableOfContentsForMarkdown(options: GenerateTableO
       const placeholderEnd = options.output.placeholder.end;
       const placeholderRegex = new RegExp(`${placeholderStart}[\S\s]*${placeholderEnd}`, 'g');
       const filePath = options.output.filePath;
-      tableOfContents = tableOfContents.replace(placeholderRegex, `${placeholderStart}\n${tableOfContents}\n${placeholderEnd}`);
-      const fileContents = fsExtra.readFileSync(filePath, 'utf-8');
-      const newFileContents = fileContents.replace(placeholderRegex, `${placeholderStart}\n${tableOfContents}\n${placeholderEnd}`);
+      const newFileContents = markdown.replace(placeholderRegex, `${placeholderStart}\n${tableOfContents}\n${placeholderEnd}`);
       fsExtra.writeFileSync(filePath, newFileContents)
     } else  {
       const fileContents = fsExtra.readFileSync(options.output.filePath, 'utf-8');
