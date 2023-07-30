@@ -27,20 +27,22 @@ Generates table of contents for markdown
   ```markdown
   # Table Of Contents
   <!-- TABLE_OF_CONTENTS_START -->
-  <!-- TABLE_OF_CONTENTS_END -->
-  ```
-- Run this javascript code
-  ```javascript
-  import {readFileSync, writeFileSync} from 'fs';
-  import {generateUsageWaysOfNpmCliApps} from '@freephoenix888/generate-table-of-contents-for-markdown';
+- [Table Of Contents](#table-of-contents)
+- [Quick Start](#quick-start)
+- [Table Of Contents](#table-of-contents)
+- [What can it be used for?](#what-can-it-be-used-for?)
+- [Library](#library)
+  - [Cli Usage](#cli-usage)
+  - [Cli Usage Ways](#cli-usage-ways)
+      - [Directly running using npx](#directly-running-using-npx)
+      - [Global Installation](#global-installation)
+        - [Global installation and running using binary name](#global-installation-and-running-using-binary-name)
+        - [Global installation and running using npx](#global-installation-and-running-using-npx)
+      - [Local installation](#local-installation)
+        - [Local installation and running using npx](#local-installation-and-running-using-npx)
+        - [Local installation and running using npm script](#local-installation-and-running-using-npm-script)
 
-  const markdownFilePath = 'README.md';
-
-  const generatedUsageWays = generateTableOfContentsForMarkdown({
-    markdownFilePath,
-  });
-  const readme = readFileSync(markdownFilePath, 'utf8');
-  const pattern = /(<!-- TABLE_OF_CONTENTS_START -->)[\S\s]*(<!-- TABLE_OF_CONTENTS_END -->)/;
+<!-- TABLE_OF_CONTENTS_END -->)/;
   const replacement = '$1\n' + generatedUsageWays + '\n$2';
   const newReadme = readme.replace(pattern, replacement);
   writeFileSync(markdownFilePath, newReadme);
