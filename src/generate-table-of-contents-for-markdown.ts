@@ -39,13 +39,6 @@ export type OutputOptions = OutputOptionsWithoutPlaceholder | OutputOptionsWithP
 
 export type GenerateTableOfContentsForMarkdownOptions = {
   /**
-   * Header level of the root header. Example: If you want generated headers to have 2 hashes, then specify 2 here
-   * 
-   * @defaultValue
-   * 1
-   */
-  rootHeaderLevel?: number;
-  /**
    * Output options
    */
   output?: OutputOptions;
@@ -67,9 +60,6 @@ export type GenerateTableOfContentsForMarkdownOptions = {
  * Generates a table of contents for a markdown file
  */
 export async function generateTableOfContentsForMarkdown(options: GenerateTableOfContentsForMarkdownOptions): Promise<string> {
-  const {
-    rootHeaderLevel = 1
-  } = options;
   const log = debug('generate-table-of-contents-for-markdown');
   log({options})
 
