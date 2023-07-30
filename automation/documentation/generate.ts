@@ -10,5 +10,17 @@ async function main() {
   for (const cliAppFilePath of cliAppFilePaths) {
     fsExtra.chmodSync(cliAppFilePath, '755');
   }
-  await generateDocumentation({})
+  await generateDocumentation({
+    generateTableOfContentsForMarkdownOptions: {
+      markdownFilePath: `./README.md`,
+      output: {
+        writeMode: 'replace-placeholder',
+        placeholder: {
+          start: `<!-- ACTUAL_TABLE_OF_CONTENTS_START -->`,
+          end: `<!-- ACTUAL_TABLE_OF_CONTENTS_END -->`
+        },
+        filePath: `./README.md`,
+      }
+    }
+  })
 };
