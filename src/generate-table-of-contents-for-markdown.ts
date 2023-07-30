@@ -71,7 +71,7 @@ export async function generateTableOfContentsForMarkdown(options: GenerateTableO
     throw new Error(`No headers found in the provided markdown file.`);
   }
 
-  let tableOfContents = `${`#`.repeat(rootHeaderLevel)} Table of Contents\n`;
+  let tableOfContents = ``;
 
   headers.forEach(header => {
     const level = header.split(' ')[0].length - 1;
