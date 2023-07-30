@@ -1,4 +1,5 @@
 import fsExtra from 'fs-extra';
+import debug from 'debug';
 
 export interface BaseOutputOptions {
   /**
@@ -69,10 +70,14 @@ export async function generateTableOfContentsForMarkdown(options: GenerateTableO
   const {
     rootHeaderLevel = 1
   } = options;
+  const log = debug('generate-table-of-contents-for-markdown');
+  log({options})
 
   const markdown = 'markdown' in options ? options.markdown : fsExtra.readFileSync(options.markdownFilePath, 'utf-8');
+  log({markdown})
 
   const headers = markdown.match(/(#+) (.*)/g);
+  log({headers})
 
   if (!headers) {
     throw new Error(`No headers found in the provided markdown file.`);
@@ -81,27 +86,34 @@ export async function generateTableOfContentsForMarkdown(options: GenerateTableO
   let tableOfContents = ``;
 
   headers.forEach(header => {
+    log({header})
     const level = header.split(' ')[0].length - 1;
+    log({level})
     const title = header.split(' ').slice(1).join(' ');
+    log({title})
     const link = title.replace(/ /g, '-').toLowerCase();
+    log({link})
     tableOfContents += `${'  '.repeat(level)}- [${title}](#${link})\n`;
+    log({tableOfContents})
   });
 
   if(options.output) {
     if(options.output.writeMode === 'replace-placeholder') {
       const placeholderStart = options.output.placeholder.start;
+      log({placeholderStart})
       const placeholderEnd = options.output.placeholder.end;
+      log({placeholderEnd})
       const placeholderRegex = new RegExp(`${placeholderStart}[\S\s]*${placeholderEnd}`, 'g');
+      log({placeholderRegex})
       const filePath = options.output.filePath;
+      log({filePath})
       const newFileContents = markdown.replace(placeholderRegex, `${placeholderStart}\n${tableOfContents}\n${placeholderEnd}`);
+      log({newFileContents})
       fsExtra.writeFileSync(filePath, newFileContents)
-    } else  {
-      const fileContents = fsExtra.readFileSync(options.output.filePath, 'utf-8');
-      if(options.output.writeMode === 'append') {
-        fsExtra.appendFileSync(options.output.filePath, `${fileContents}\n${tableOfContents}`)
-      } else if(options.output.writeMode === 'overwrite') {
-        fsExtra.writeFileSync(options.output.filePath, tableOfContents)
-      }
+    } else if(options.output.writeMode === 'append') {
+      fsExtra.appendFileSync(options.output.filePath, markdown)
+    } else if(options.output.writeMode === 'overwrite') {
+      fsExtra.writeFileSync(options.output.filePath, tableOfContents)
     }
   }
 
