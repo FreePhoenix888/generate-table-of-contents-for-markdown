@@ -101,7 +101,7 @@ export async function generateTableOfContentsForMarkdown(options: GenerateTableO
       log({newFileContents})
       fsExtra.writeFileSync(filePath, newFileContents)
     } else if(options.output.writeMode === 'append') {
-      fsExtra.appendFileSync(options.output.filePath, markdown)
+      fsExtra.appendFileSync(options.output.filePath, tableOfContents)
     } else if(options.output.writeMode === 'overwrite') {
       fsExtra.writeFileSync(options.output.filePath, tableOfContents)
     }
