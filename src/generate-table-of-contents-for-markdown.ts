@@ -36,11 +36,7 @@ export interface OutputOptionsWithPlaceholder extends BaseOutputOptions, WriteMo
 
 export type OutputOptions = OutputOptionsWithoutPlaceholder | OutputOptionsWithPlaceholder;
 
-export interface GenerateTableOfContentsForMarkdownOptions {
-  /**
-   * Path of the markdown file
-   */
-  markdownFilePath: string;
+export type GenerateTableOfContentsForMarkdownOptions = {
   /**
    * Header level of the root header. Example: If you want generated headers to have 2 hashes, then specify 2 here
    * 
@@ -52,20 +48,31 @@ export interface GenerateTableOfContentsForMarkdownOptions {
    * Output options
    */
   output?: OutputOptions;
-}
+} & (
+  {
+      /**
+   * Path of the markdown file
+   */
+  markdownFilePath: string;
+  } | {
+    /**
+     * Markdown content
+     */
+    markdown: string;
+  }
+)
 
 /**
  * Generates a table of contents for a markdown file
  */
 export async function generateTableOfContentsForMarkdown(options: GenerateTableOfContentsForMarkdownOptions): Promise<string> {
   const {
-    markdownFilePath,
     rootHeaderLevel = 1
   } = options;
 
-  const markdownFile = fsExtra.readFileSync(markdownFilePath, 'utf-8');
+  const markdown = 'markdown' in options ? options.markdown : fsExtra.readFileSync(options.markdownFilePath, 'utf-8');
 
-  const headers = markdownFile.match(/(#+) (.*)/g);
+  const headers = markdown.match(/(#+) (.*)/g);
 
   if (!headers) {
     throw new Error(`No headers found in the provided markdown file.`);
