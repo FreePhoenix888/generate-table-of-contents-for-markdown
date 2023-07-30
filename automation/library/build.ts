@@ -1,7 +1,9 @@
-import { execa } from 'execa';
+import {buildTypescriptLibrary} from '@deep-foundation/npm-automation'
 
-build()
+main();
 
-async function build() { 
-  await execa('tsc', {stdio: 'inherit', verbose: true});
-};
+async function main() {
+  await buildTypescriptLibrary({
+    generatePackageClassOptions: null
+  })
+}
