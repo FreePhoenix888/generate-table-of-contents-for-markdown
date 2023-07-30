@@ -60,7 +60,7 @@ export type GenerateTableOfContentsForMarkdownOptions = {
  * Generates a table of contents for a markdown file
  */
 export async function generateTableOfContentsForMarkdown(options: GenerateTableOfContentsForMarkdownOptions): Promise<string> {
-  const log = debug('generate-table-of-contents-for-markdown');
+  const log = debug(generateTableOfContentsForMarkdown.name);
   log({options})
 
   const markdown = 'markdown' in options ? options.markdown : fsExtra.readFileSync(options.markdownFilePath, 'utf-8');
