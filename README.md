@@ -8,8 +8,7 @@ Generates table of contents for markdown
 <!-- ACTUAL_TABLE_OF_CONTENTS_START -->
 - [Table Of Contents](#table-of-contents)
 - [Quick Start](#quick-start)
-- [Table Of Contents](#table-of-contents)
-- [What can it be used for?](#what-can-it-be-used-for?)
+- [What can it be used for?](#what-can-it-be-used-for)
 - [Library](#library)
 
 <!-- ACTUAL_TABLE_OF_CONTENTS_END -->
@@ -30,12 +29,16 @@ Generates table of contents for markdown
 
   const generatedUsageWays = generateTableOfContentsForMarkdown({
     markdownFilePath,
+    output: {
+      writeMode: 'replace-placeholder',
+      placeholder: {
+        start: `<!-- TABLE_OF_CONTENTS_START -->`,
+        end: `<!-- TABLE_OF_CONTENTS_END -->`,
+      },
+      filePath: readmeFilePath
+    }
   });
-  const readme = readFileSync(markdownFilePath, 'utf8');
-  const pattern = /(<!-- TABLE_OF_CONTENTS_START -->)[\S\s]*(<!-- TABLE_OF_CONTENTS_END -->)/;
-  const replacement = '$1\n' + generatedUsageWays + '\n$2';
-  const newReadme = readme.replace(pattern, replacement);
-  writeFileSync(markdownFilePath, newReadme);
+  console.log(generatedUsageWays)
   ```
 
 # What can it be used for?
