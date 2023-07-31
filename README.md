@@ -8,7 +8,6 @@ Generates table of contents for markdown
 <!-- ACTUAL_TABLE_OF_CONTENTS_START -->
 - [Table Of Contents](#table-of-contents)
 - [Quick Start](#quick-start)
-- [What can it be used for?](#what-can-it-be-used-for?)
 - [Library](#library)
 
 <!-- ACTUAL_TABLE_OF_CONTENTS_END -->
