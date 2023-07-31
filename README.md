@@ -38,9 +38,6 @@ Generates table of contents for markdown
   console.log(generatedUsageWays)
   ```
 
-# What can it be used for?
-You can use it to generate table of contents for your markdown files. For example for readme.MD files
-
 
 # Library
 See [Documentation] for examples and API
