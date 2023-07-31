@@ -8,7 +8,7 @@ Generates table of contents for markdown
 <!-- ACTUAL_TABLE_OF_CONTENTS_START -->
 - [Table Of Contents](#table-of-contents)
 - [Quick Start](#quick-start)
-- [What can it be used for?](#what-can-it-be-used-for?)
+- [What can it be used for?](#what-can-it-be-used-for)
 - [Library](#library)
 
 <!-- ACTUAL_TABLE_OF_CONTENTS_END -->
@@ -24,8 +24,6 @@ Generates table of contents for markdown
   import {readFileSync, writeFileSync} from 'fs';
   import {generateUsageWaysOfNpmCliApps} from '@freephoenix888/generate-table-of-contents-for-markdown';
 
-  const markdownFilePath = 'README.md';
-
   const generatedUsageWays = generateTableOfContentsForMarkdown({
     markdownFilePath,
     output: {
@@ -34,7 +32,7 @@ Generates table of contents for markdown
         start: `<!-- TABLE_OF_CONTENTS_START -->`,
         end: `<!-- TABLE_OF_CONTENTS_END -->`,
       },
-      filePath: readmeFilePath
+      filePath: 'README.md'
     }
   });
   console.log(generatedUsageWays)
