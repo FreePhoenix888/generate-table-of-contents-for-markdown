@@ -16,7 +16,6 @@ Generates table of contents for markdown
 # Quick Start
 - Add the following to your README.md
   ```markdown
-  # Table Of Contents
   <!-- TABLE_OF_CONTENTS_START -->
   <!-- TABLE_OF_CONTENTS_END -->
   ```
